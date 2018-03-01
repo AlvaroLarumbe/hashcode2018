@@ -56,7 +56,10 @@ class City {
     }
 
     nextStep() {
+        let possibles = new Map();
 
+        for(let ride of this.rides) {
+            let key = ride.earliestStart;
         // Vehicles step
 
         for (let vehicle of this.vehicles) vehicle.step();
@@ -65,14 +68,17 @@ class City {
 
         let possibles = this.rides.filter(ride => ride.earliestStart <= this.step);
 
+            let arr = possibles.get(key) || [];
+            arr.push(ride);
+            possibles.set(key, arr);
+        }
+
         console.log(possibles);
 
         // End
 
         this.step++;
     }
-
-    // We will look at static and subclassed methods shortly
 }
 
 module.exports.City = City;
