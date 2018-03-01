@@ -1,2 +1,9 @@
-# hashcode2018
-HashCode 2018
+# HashCode2018
+
+## Requirements
+- Node.js
+
+## Usage
+```bash
+npm start
+```
