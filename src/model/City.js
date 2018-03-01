@@ -1,6 +1,6 @@
 var fs = require('fs');
-const Vehicle = require('./vehicle.js');
-const Ride = require('./ride.js');
+const Vehicle = require('./Vehicle.js');
+const Ride = require('./Ride.js');
 
 'use strict';
 

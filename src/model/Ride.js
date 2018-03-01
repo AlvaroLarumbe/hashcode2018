@@ -1,4 +1,6 @@
-export class Ride {
+'use strict';
+
+class Ride {
 
     constructor(start = [0, 0], end, earliestStart, latestFinish) {
         this._start = start;

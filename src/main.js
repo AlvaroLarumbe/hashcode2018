@@ -1,6 +1,6 @@
 const init = require('./init.js');
-const City = require('./model/city.js');
+const City = require('./model/City.js');
 
 init.init();
 
-var city = new City('./datasets/a_example.in');
+var city = new City.City('./datasets/a_example.in');

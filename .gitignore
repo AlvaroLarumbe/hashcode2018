@@ -18,4 +18,4 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-.idea/workspace.xml
+.idea/
