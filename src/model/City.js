@@ -57,9 +57,17 @@ class City {
 
     nextStep() {
 
+        // Vehicles step
+
+        for (let vehicle of this.vehicles) vehicle.step();
+
+        // Posibles filter
+
         let possibles = this.rides.filter(ride => ride.earliestStart <= this.step);
 
         console.log(possibles);
+
+        // End
 
         this.step++;
     }

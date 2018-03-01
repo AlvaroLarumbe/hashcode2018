@@ -10,6 +10,10 @@ class Ride {
         this._latestFinish = latestFinish;
     }
 
+    get index() {
+        return this._index;
+    }
+
     get start() {
         return this._start;
     }
