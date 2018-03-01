@@ -20,5 +20,5 @@ for (var v of city.vehicles) {
     }
     rides = cont + " " + rides;
     console.log(`${rides}`);
-    fs.writeFileSync(ridesPerVeh, ${rides});
+    fs.writeFileSync(ridesPerVeh, `${rides}\n`);
 }
