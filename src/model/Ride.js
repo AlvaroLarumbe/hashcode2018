@@ -46,6 +46,10 @@ class Ride {
         this._latestFinish = value;
     }
 
+    calculateTime(vehiclePosition = this._start) {
+        return Math.abs(vehiclePosition[0] - this_end[0]) + Math.abs(vehiclePosition[1] - this._end[1]);
+    }
+
 }
 
 module.exports.Ride = Ride;
