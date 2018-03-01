@@ -34,6 +34,17 @@ class Vehicle {
     hasRide() {
         return this._ride !== null;
     }
+
+    calculate(destPos) {
+        let rideTRem = 0;
+        if (this.hasRide()) {
+            rideTRem = this._ride.calculateTime(this._pos);
+        }
+
+        let start = this.hasRide() ? this._ride.end : this._pos;
+
+        return Math.abs(start[0]-destPos[0]) + Math.abs(start[1]-destPos[1]) + rideTRem;
+    }
 }
 
 module.exports.Vehicle = Vehicle;
