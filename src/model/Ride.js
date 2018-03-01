@@ -2,7 +2,8 @@
 
 class Ride {
 
-    constructor(start = [0, 0], end, earliestStart, latestFinish) {
+    constructor(index = 0, start = [0, 0], end, earliestStart, latestFinish) {
+        this._index = index;
         this._start = start;
         this._end = end;
         this._earliestStart = earliestStart;

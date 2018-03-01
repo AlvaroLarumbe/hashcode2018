@@ -8,15 +8,10 @@ class City {
   
     constructor(dataset) {
 
+        this.step = 0;
+
         this.rides = [];
         this.vehicles = [];
-
-        this.rows = 0;
-        this.cols = 0;
-        this.fleet = 0;
-        this.nrides = 0;
-        this.bonus = 0;
-        this.tsteps = 0;
 
         if (fs.existsSync(dataset)) {
 
@@ -27,9 +22,6 @@ class City {
                 if (index === arr.length - 1 && line === "") { return; }
 
                 data = line.split(' ');
-
-                console.log(index + ': ' + line);
-                console.log(data);
 
                 if (index === 0) {
 
@@ -47,12 +39,12 @@ class City {
                         process.exit();
                     }
                 } else {
-                    new Ride.Ride(
+                    this.rides.push(new Ride.Ride(index - 1,
                         [parseInt(data[0]), parseInt(data[1])],
                         [parseInt(data[2]), parseInt(data[3])],
                         parseInt(data[4]),
                         parseInt(data[5])
-                    )
+                    ));
                 }
             });
 
@@ -61,6 +53,15 @@ class City {
             console.log('Dataset not found :(');
             process.exit();
         }
+    }
+
+    nextStep() {
+
+        let possibles = this.rides.filter(ride => ride.earliestStart <= this.step);
+
+        console.log(possibles);
+
+        this.step++;
     }
 
     // We will look at static and subclassed methods shortly

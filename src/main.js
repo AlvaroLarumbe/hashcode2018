@@ -3,4 +3,6 @@ const City = require('./model/City.js');
 
 init.init();
 
-var city = new City.City('./datasets/a_example.in');
+let city = new City.City('./datasets/a_example.in');
+
+city.nextStep();
