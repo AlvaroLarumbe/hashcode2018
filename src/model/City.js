@@ -33,7 +33,7 @@ class City {
                     this.tsteps = parseInt(data[5]);
 
                     if (this.fleet > 0) {
-                        [...Array(this.f).keys()].forEach(v => this.vehicles.push(new Vehicle.Vehicle()));
+                        [...Array(this.fleet).keys()].forEach(v => this.vehicles.push(new Vehicle.Vehicle()));
                     } else {
                         console.log('Fleet needs at least 1 vehicle');
                         process.exit();
@@ -47,6 +47,8 @@ class City {
                     ));
                 }
             });
+
+            console.log(this.rides)
 
             console.log('City has been created');
         } else {
@@ -67,22 +69,47 @@ class City {
             possibles.set(key, arr);
         }
 
-        //console.log(possibles);
+        console.log(possibles);
 
-        possibles.forEach((possibles, key) => {
-            for(let ride of possibles) {
+        possibles.forEach((possibles2, key) => {
+
+            console.log('possibles START');
+            console.log(possibles2);
+            console.log('possibles END');
+            for(let ride of possibles2) {
                 let times = [];
 
                 for(let vehicle of this.vehicles) {
                     times.push(vehicle.calculate(ride.start));
                 }
 
-                let vehicleIdx = times.indexOf(Math.min(times));
-                this.vehicles[vehicleIdx].ride = ride;
+                console.log(times);
+
+                let time = Math.min(...times);
+
+                if (time !== Number.POSITIVE_INFINITY) {
+
+                    let vehicleIdx = times.indexOf(time);
+
+                    this.vehicles[vehicleIdx].ride = ride;
+
+                    // Delete ride
+
+                    this.rides = this.rides.filter(r => {
+                        return r.id !== ride.id;
+                    });
+
+                    console.log('Entra: ', ride);
+                    console.log('Quedan: ', this.rides);
+                } else console.log('Vehiculo ocupado');
             }
         });
 
         this.step++;
+    }
+
+    isFinished() {
+        return this.step === this.tsteps
     }
 }
 

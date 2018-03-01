@@ -7,9 +7,13 @@ init.init();
 let city = new City.City('./datasets/a_example.in');
 let ridesPerVeh = "./datasets/rides_per_vehicle.out";
 
-city.nextStep();
+do {
+   city.nextStep();
 
+   console.log('STEP');
+} while (!city.isFinished());
 
+console.log('Finaliza')
 
 for (var v of city.vehicles) {
     let cont = 0;

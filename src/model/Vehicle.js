@@ -2,9 +2,9 @@
 
 class Vehicle {
 
-    constructor (pos = [0, 0], ride = null) {
+    constructor (pos = [0, 0]) {
         this._pos = pos;
-        this._ride = ride;
+        this._ride = null;
 
         this._rides = [];
     }
@@ -42,34 +42,26 @@ class Vehicle {
     }
 
     step() {
-
-        console.log('pos: ', this._pos);
         
         if (this.hasRide()) {
-
-            console.log('dest: ', this._ride.end);
 
             if (this._pos[0] !== this._ride.end[0]) this._pos[0] += Math.sign(this._ride.end[0], this._pos[0]);
             else this._pos[1] += Math.sign(this._ride.end[1], this._pos[1]);
 
-            if (this._pos === this._ride.end) {
+            if (this._pos[0] === this._ride.end[0] && this._pos[1] === this._ride.end[1]) {
                 this._rides.push(this._ride);
                 this.ride = null;
-            }
 
-            console.log('new pos: ', this._pos);
-        } else console.log('no-move');
+                console.log('Coche llega');
+            }
+        }
     }
 
     calculate(destPos) {
+
         let rideTRem = 0;
-        if (this.hasRide()) {
-            rideTRem = this._ride.calculateTime(this._pos);
-        }
 
-        let start = this.hasRide() ? this._ride.end : this._pos;
-
-        return Math.abs(start[0]-destPos[0]) + Math.abs(start[1]-destPos[1]) + rideTRem;
+        return this.hasRide() ? Number.POSITIVE_INFINITY : Math.abs(this._pos[0] - destPos[0]) + Math.abs(this._pos[1]-destPos[1]);
     }
 }
 
