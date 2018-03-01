@@ -47,7 +47,7 @@ class Ride {
     }
 
     calculateTime(vehiclePosition = this._start) {
-        return Math.abs(vehiclePosition[0] - this_end[0]) + Math.abs(vehiclePosition[1] - this._end[1]);
+        return Math.abs(vehiclePosition[0] - this._end[0]) + Math.abs(vehiclePosition[1] - this._end[1]);
     }
 
 }

@@ -56,26 +56,31 @@ class City {
     }
 
     nextStep() {
+        for (let vehicle of this.vehicles) vehicle.step();
+
         let possibles = new Map();
 
         for(let ride of this.rides) {
             let key = ride.earliestStart;
-        // Vehicles step
-
-        for (let vehicle of this.vehicles) vehicle.step();
-
-        // Posibles filter
-
-        let possibles = this.rides.filter(ride => ride.earliestStart <= this.step);
-
             let arr = possibles.get(key) || [];
             arr.push(ride);
             possibles.set(key, arr);
         }
 
-        console.log(possibles);
+        //console.log(possibles);
 
-        // End
+        possibles.forEach((possibles, key) => {
+            for(let ride of possibles) {
+                let times = [];
+
+                for(let vehicle of this.vehicles) {
+                    times.push(vehicle.calculate(ride.start));
+                }
+
+                let vehicleIdx = times.indexOf(Math.min(times));
+                this.vehicles[vehicleIdx].ride = ride;
+            }
+        });
 
         this.step++;
     }

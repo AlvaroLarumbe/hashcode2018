@@ -6,6 +6,9 @@ init.init();
 let city = new City.City('./datasets/a_example.in');
 
 city.nextStep();
+
+
+
 for (var v of city.vehicles) {
     let cont = 0;
     let rides = "";
