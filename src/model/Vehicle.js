@@ -36,4 +36,4 @@ class Vehicle {
     }
 }
 
-module.exports.vehicle = Vehicle;
+module.exports.Vehicle = Vehicle;

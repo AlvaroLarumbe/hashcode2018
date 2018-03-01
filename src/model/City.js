@@ -11,28 +11,43 @@ class City {
         this.rides = [];
         this.vehicles = [];
 
+        this.rows = 0;
+        this.cols = 0;
+        this.fleet = 0;
+        this.nrides = 0;
+        this.bonus = 0;
+        this.tsteps = 0;
+
         if (fs.existsSync(dataset)) {
-            fs.readFileSync(dataset).toString().split("\n").forEach(function(line, index, arr) {
+
+            var data = '';
+
+            fs.readFileSync(dataset).toString().split("\n").forEach((line, index, arr) => {
+                
                 if (index === arr.length - 1 && line === "") { return; }
 
                 data = line.split(' ');
 
-                if (index === 0) {
-                    this.r = parseInt(data[0]);
-                    this.c = parseInt(data[1]);
-                    this.f = parseInt(data[2]);
-                    this.n = parseInt(data[3]);
-                    this.b = parseInt(data[4]);
-                    this.t = parseInt(data[5]);
+                console.log(index + ': ' + line);
+                console.log(data);
 
-                    if (this.f > 0) {
-                        [...Array(this.f).keys()].forEach(v => this.vehicles.push(new Vehicle()));
+                if (index === 0) {
+
+                    this.rows = parseInt(data[0]);
+                    this.cols = parseInt(data[1]);
+                    this.fleet = parseInt(data[2]);
+                    this.nrides = parseInt(data[3]);
+                    this.bonus = parseInt(data[4]);
+                    this.tsteps = parseInt(data[5]);
+
+                    if (this.fleet > 0) {
+                        [...Array(this.f).keys()].forEach(v => this.vehicles.push(new Vehicle.Vehicle()));
                     } else {
                         console.log('Fleet needs at least 1 vehicle');
                         process.exit();
                     }
                 } else {
-                    new Ride(
+                    new Ride.Ride(
                         [parseInt(data[0]), parseInt(data[1])],
                         [parseInt(data[2]), parseInt(data[3])],
                         parseInt(data[4]),
