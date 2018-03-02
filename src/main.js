@@ -16,6 +16,8 @@ do {
 console.log('Finaliza')
 
 for (var v of city.vehicles) {
+
+    console.log(v.rides);
     let cont = 0;
     let rides = "";
     for (var r of v.rides) {

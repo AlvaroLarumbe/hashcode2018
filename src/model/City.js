@@ -69,6 +69,7 @@ class City {
             possibles.set(key, arr);
         }
 
+        console.log(this.rides);
         console.log(possibles);
 
         possibles.forEach((possibles2, key) => {
